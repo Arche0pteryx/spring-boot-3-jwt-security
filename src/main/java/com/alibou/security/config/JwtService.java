@@ -28,21 +28,26 @@ public class JwtService {
   }
 
   public String generateToken(UserDetails userDetails) {
-    return generateToken(new HashMap<>(), userDetails);
+    String token =  generateToken(new HashMap<>(), userDetails);
+    System.out.println(" generé: " + token);
+    return token;
   }
 
   public String generateToken(
       Map<String, Object> extraClaims,
       UserDetails userDetails
   ) {
-    return Jwts
+    System.out.println(" generateToken Generating token for user: " + userDetails.getUsername());
+    return  Jwts
         .builder()
         .setClaims(extraClaims)
         .setSubject(userDetails.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+            .setHeaderParam("id", "1")
         .signWith(getSignInKey(), SignatureAlgorithm.HS256)
         .compact();
+
   }
 
   public boolean isTokenValid(String token, UserDetails userDetails) {

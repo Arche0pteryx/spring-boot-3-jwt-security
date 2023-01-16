@@ -5,8 +5,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: alibou
-      POSTGRES_PASSWORD: alibou
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Ducati01!
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres

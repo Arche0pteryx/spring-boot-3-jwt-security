@@ -1,11 +1,7 @@
 package com.alibou.security.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Collection;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -21,15 +17,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "_user")
+@Table(name = "app_users")
 public class User implements UserDetails {
 
   @Id
-  @GeneratedValue
-  private Integer id;
+  @GeneratedValue(strategy= GenerationType.IDENTITY)
+  private Long id;
+  @Column(name = "firstname")
   private String firstname;
+  @Column(name = "lastname")
   private String lastname;
+  @Column(name = "email")
   private String email;
+  @Column(name = "password")
   private String password;
 
   @Enumerated(EnumType.STRING)
