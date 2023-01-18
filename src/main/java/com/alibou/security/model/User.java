@@ -1,4 +1,4 @@
-package com.alibou.security.user;
+package com.alibou.security.model;
 
 import jakarta.persistence.*;
 
@@ -38,6 +38,10 @@ public class User implements UserDetails {
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return List.of(new SimpleGrantedAuthority(role.name()));
+  }
+
+  public Long getId() {
+    return id;
   }
 
   @Override

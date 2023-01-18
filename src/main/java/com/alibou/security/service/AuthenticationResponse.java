@@ -1,4 +1,4 @@
-package com.alibou.security.auth;
+package com.alibou.security.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,9 +1,9 @@
-package com.alibou.security.auth;
+package com.alibou.security.service;
 
 import com.alibou.security.config.JwtService;
-import com.alibou.security.user.Role;
-import com.alibou.security.user.User;
-import com.alibou.security.user.UserRepository;
+import com.alibou.security.model.Role;
+import com.alibou.security.model.User;
+import com.alibou.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,9 +25,10 @@ public class AuthenticationService {
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
         .role(Role.USER)
+        .id(request.getId())
         .build();
     repository.save(user);
-    var jwtToken = jwtService.generateToken(user);
+    var jwtToken = jwtService.generateToken(user,request.getId());
     return AuthenticationResponse.builder()
         .token(jwtToken)
         .build();
@@ -43,7 +44,7 @@ public class AuthenticationService {
     var user = repository.findByEmail(request.getEmail())
         .orElseThrow();
     System.out.println(user.getId());
-    var jwtToken = jwtService.generateToken(user);
+    var jwtToken = jwtService.generateToken(user,user.getId());
     return AuthenticationResponse.builder()
         .token(jwtToken)
         .build();

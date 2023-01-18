@@ -1,11 +1,15 @@
-package com.alibou.security.auth;
+package com.alibou.security.controller;
 
-import com.alibou.security.user.User;
+import com.alibou.security.service.AuthenticationRequest;
+import com.alibou.security.service.AuthenticationResponse;
+import com.alibou.security.service.AuthenticationService;
+import com.alibou.security.service.RegisterRequest;
+import com.alibou.security.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.alibou.security.user.UserRepository;
+import com.alibou.security.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -28,7 +32,7 @@ public class AuthenticationController {
     return ResponseEntity.ok(service.authenticate(request));
   }
   @GetMapping("/user-profile/{id}")
-  public User getTransactionById(@PathVariable Long id) {
+  public User getUserById(@PathVariable Long id) {
     return userRepository.findById(id).orElse(  null);
   }
 
