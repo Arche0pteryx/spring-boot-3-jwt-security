@@ -3,6 +3,7 @@ package com.alibou.security.model;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "app_users")
+@Table(name = "users")
 public class User implements UserDetails {
 
   @Id
@@ -31,6 +32,9 @@ public class User implements UserDetails {
   private String email;
   @Column(name = "password")
   private String password;
+
+  @Column(name = "creation_date")
+  private Date creation_date;
 
   @Enumerated(EnumType.STRING)
   private Role role;

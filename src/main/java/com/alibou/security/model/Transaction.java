@@ -1,42 +1,46 @@
 package com.alibou.security.model;
-
-
-
 import jakarta.persistence.*;
-
-
-
 import java.util.Date;
 
 @Entity
-@Table(name="transaction")
+@Table(name="transactions")
 public class Transaction {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "id_user")
+    private Long idUser;
     @Column(name = "type")
     private String type;
-    @Column(name = "cryptocurrencybefore")
-    private String cryptoCurrencyBefore;
-    @Column(name = "cryptocurrencyamountbefore")
-    private Double cryptoCurrencyAmountBefore;
-    @Column(name = "cryptocurrencyafter")
-    private String cryptoCurrencyAfter;
-    @Column(name = "cryptocurrencyamountafter")
-    private Double cryptoCurrencyAmountAfter;
+    @Column(name = "cryptoin")
+    private String cryptoIN;
+    @Column(name = "cryptoinamount")
+    private Double cryptoINamount;
+    @Column(name = "cryptoout")
+    private String cryptoOUT;
+    @Column(name = "cryptooutamount")
+    private Double cryptoOUTamount;
+
+    @Column(name = "cryptofee")
+    private String cryptoFEE;
+    @Column(name = "cryptofeeamount")
+    private Double cryptoFEEamount;
     @Column(name = "date")
     private Date date;
 
     // Constructor
     public Transaction() {
     }
-    public Transaction( String type, String cryptoCurrencyBefore, Double cryptoCurrencyAmountBefore, String cryptoCurrencyAfter, Double cryptoCurrencyAmountAfter, Date date) {
+    public Transaction( Long idUser, String type, String cryptoIN , Double cryptoINamount, String cryptoOUT, Double cryptoOUTamount, Date date, String cryptoFEE, Double cryptoFEEamount) {
         super();
         this.type = type;
-        this.cryptoCurrencyBefore = cryptoCurrencyBefore;
-        this.cryptoCurrencyAmountBefore = cryptoCurrencyAmountBefore;
-        this.cryptoCurrencyAfter = cryptoCurrencyAfter;
-        this.cryptoCurrencyAmountAfter = cryptoCurrencyAmountAfter;
+        this.idUser = idUser;
+        this.cryptoIN = cryptoIN;
+        this.cryptoINamount = cryptoINamount;
+        this.cryptoOUT = cryptoOUT;
+        this.cryptoOUTamount = cryptoOUTamount;
+        this.cryptoFEE = cryptoFEE;
+        this.cryptoFEEamount = cryptoFEEamount;
         this.date = date;
     }
     //  Getters and Setters
@@ -46,30 +50,37 @@ public class Transaction {
     public void setType(String type) {
         this.type = type;
     }
-    public String getCryptoCurrencyBefore() {
-        return cryptoCurrencyBefore;
+    public String getCryptoIN() {
+        return cryptoIN;
     }
-    public void setCryptoCurrencyBefore(String cryptoCurrencyBefore) {
-        this.cryptoCurrencyBefore = cryptoCurrencyBefore;
+    public void setCryptoIN(String cryptoIN) {
+        this.cryptoIN = cryptoIN;
     }
-    public Double getCryptoCurrencyAmountBefore() {
-        return cryptoCurrencyAmountBefore;
+    public Double getCryptoINamount() {
+        return cryptoINamount;
     }
-    public void setCryptoCurrencyAmountBefore(Double cryptoCurrencyAmountBefore) {
-        this.cryptoCurrencyAmountBefore = cryptoCurrencyAmountBefore;
+    public void setCryptoINamount(Double cryptoINamount) {
+        this.cryptoINamount = cryptoINamount;
     }
-    public String getCryptoCurrencyAfter() {
-        return cryptoCurrencyAfter;
+    public String getCryptoOUT() {
+        return cryptoOUT;
     }
-    public void setCryptoCurrencyAfter(String cryptoCurrencyAfter) {
-        this.cryptoCurrencyAfter = cryptoCurrencyAfter;
+    public void setCryptoOUT(String cryptoOUT) {
+        this.cryptoOUT = cryptoOUT;
     }
-    public Double getCryptoCurrencyAmountAfter() {
-        return cryptoCurrencyAmountAfter;
+    public Double getCryptoOUTamount() {
+        return cryptoOUTamount;
     }
-    public void setCryptoCurrencyAmountAfter(Double cryptoCurrencyAmountAfter) {
-        this.cryptoCurrencyAmountAfter = cryptoCurrencyAmountAfter;
+    public void setCryptoOUTamount(Double cryptoOUTamount) {
+        this.cryptoOUTamount = cryptoOUTamount;
     }
+    public Long getIdUser() {
+        return idUser;
+    }
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -82,6 +93,16 @@ public class Transaction {
     public void setId(Long id) {
         this.id = id;
     }
-
-
+    public String getCryptoFEE() {
+        return cryptoFEE;
+    }
+    public void setCryptoFEE(String cryptoFEE) {
+        this.cryptoFEE = cryptoFEE;
+    }
+    public Double getCryptoFEEamount() {
+        return cryptoFEEamount;
+    }
+    public void setCryptoFEEamount(Double cryptoFEEamount) {
+        this.cryptoFEEamount = cryptoFEEamount;
+    }
 }

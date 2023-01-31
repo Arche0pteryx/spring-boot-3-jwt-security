@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -26,7 +28,9 @@ public class AuthenticationService {
         .password(passwordEncoder.encode(request.getPassword()))
         .role(Role.USER)
         .id(request.getId())
+        .creation_date(new Date())
         .build();
+
     repository.save(user);
     var jwtToken = jwtService.generateToken(user,request.getId());
     return AuthenticationResponse.builder()

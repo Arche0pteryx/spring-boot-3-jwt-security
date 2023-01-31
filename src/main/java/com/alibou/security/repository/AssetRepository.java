@@ -1,10 +1,11 @@
 package com.alibou.security.repository;
+
+import com.alibou.security.model.Asset;
 import com.alibou.security.model.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface TransactionRepository extends JpaRepository <Transaction, Long> {
-    List<Transaction> findByIdUser(Long idUser);
-}
-
+public interface AssetRepository extends JpaRepository<Asset, Long> {
+    List<Asset> findByIdUser(Long idUser);
+    }
