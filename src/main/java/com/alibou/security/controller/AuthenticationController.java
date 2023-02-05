@@ -8,6 +8,7 @@ import com.alibou.security.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import com.alibou.security.repository.UserRepository;
 
@@ -31,9 +32,9 @@ public class AuthenticationController {
   ) {
     return ResponseEntity.ok(service.authenticate(request));
   }
-  @GetMapping("/user-profile/{id}")
-  public User getUserById(@PathVariable Long id) {
-    return userRepository.findById(id).orElse(  null);
+  @GetMapping("/user-profile")
+  public User getUserById(@AuthenticationPrincipal User user) {
+    return userRepository.findById(user.getId()).orElse(  null);
   }
 
 }
