@@ -27,10 +27,16 @@ public class AuthenticationController {
     return ResponseEntity.ok(service.register(request));
   }
   @PostMapping("/authenticate")
-  public ResponseEntity<AuthenticationResponse> authenticate(
+  public ResponseEntity<AuthenticationResponse> authenticate (
       @RequestBody AuthenticationRequest request
-  ) {
-    return ResponseEntity.ok(service.authenticate(request));
+  ) throws Exception{
+    try {
+      return ResponseEntity.ok(service.authenticate(request));
+    } catch (Exception e) {
+     // return ResponseEntity.badRequest().build();
+      throw new Exception("Incorrect username or password", e);
+    }
+
   }
   @GetMapping("/user-profile")
   public User getUserById(@AuthenticationPrincipal User user) {

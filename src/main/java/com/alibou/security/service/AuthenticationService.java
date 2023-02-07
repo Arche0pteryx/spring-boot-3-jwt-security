@@ -6,6 +6,7 @@ import com.alibou.security.model.User;
 import com.alibou.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,19 +39,28 @@ public class AuthenticationService {
         .build();
   }
 
-  public AuthenticationResponse authenticate(AuthenticationRequest request) {
-    authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(
-            request.getEmail(),
-            request.getPassword()
-        )
-    );
+  public AuthenticationResponse authenticate(AuthenticationRequest request) throws Exception {
+    System.out.println("authenticate");
+    try {
+      authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                    request.getEmail(),
+                    request.getPassword()
+            )
+      );
+    } catch (BadCredentialsException e) {
+      throw new Exception("INVALID_CREDENTIALS", e);
+    }
+
+
+    System.out.println("findByEmail");
     var user = repository.findByEmail(request.getEmail())
-        .orElseThrow();
+            .orElseThrow();
     System.out.println(user.getId());
+    System.out.println("generation token user = " + user);
     var jwtToken = jwtService.generateToken(user,user.getId());
     return AuthenticationResponse.builder()
-        .token(jwtToken)
-        .build();
+            .token(jwtToken)
+            .build();
   }
 }
