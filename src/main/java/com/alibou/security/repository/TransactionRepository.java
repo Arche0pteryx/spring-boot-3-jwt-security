@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface TransactionRepository extends JpaRepository <Transaction, Long> {
     List<Transaction> findByIdUser(Long idUser);
+
+    List<Transaction> findByIdUserAndIdWallet(Long idUser,Long idWallet);
 }
 

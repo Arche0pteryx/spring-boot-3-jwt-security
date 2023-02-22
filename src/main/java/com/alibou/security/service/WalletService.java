@@ -35,11 +35,11 @@ public class WalletService {
         Wallet wallet = walletRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("wallet not exist with id :" + id));
 
-        wallet.setIdUser(walletDetails.getIdUser());
         wallet.setName(walletDetails.getName());
         wallet.setExchangeId(walletDetails.getExchangeId());
         wallet.setPublicKey(walletDetails.getPublicKey());
         wallet.setBlockchain( walletDetails.getBlockchain());
+        wallet.setDate(walletDetails.getDate());
 
         return  walletRepository.save(wallet);
     }

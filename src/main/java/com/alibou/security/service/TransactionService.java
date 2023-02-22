@@ -20,6 +20,10 @@ public class TransactionService {
         return transactionRepository.findByIdUser(idUser);
     }
 
+    public List<Transaction> getAllTransactionsWallet(Long idUser,Long idWallet) {
+        return transactionRepository.findByIdUserAndIdWallet(idUser,idWallet);
+    }
+
     public Transaction getTransactionById(Long id,Long idUser) {
         Transaction transaction= transactionRepository.findById(id).orElse(  null);
         if (transaction.getIdUser() == idUser) {
@@ -27,6 +31,8 @@ public class TransactionService {
         }
         return null;
     }
+
+
 
     public Transaction createTransaction(Transaction transaction) {
         return transactionRepository.save(transaction);
@@ -37,14 +43,20 @@ public class TransactionService {
         Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("transaction not exist with id :" + id));
 
+        transaction.setIdWallet(transactionDetails.getIdWallet());
         transaction.setDate(transactionDetails.getDate());
         transaction.setType(transactionDetails.getType());
         transaction.setCryptoIN(transactionDetails.getCryptoIN());
+        transaction.setCryptoINid(transactionDetails.getCryptoINid());
         transaction.setCryptoINamount(transactionDetails.getCryptoINamount());
+        transaction.setCryptoINprice(transactionDetails.getCryptoINprice());
         transaction.setCryptoOUT(transactionDetails.getCryptoOUT());
+        transaction.setCryptoOUTid(transactionDetails.getCryptoOUTid());
         transaction.setCryptoOUTamount(transactionDetails.getCryptoOUTamount());
+        transaction.setCryptoOUTprice(transactionDetails.getCryptoOUTprice());
         transaction.setIdUser(transactionDetails.getIdUser());
         transaction.setCryptoFEE(transactionDetails.getCryptoFEE());
+        transaction.setCryptoFEEid(transactionDetails.getCryptoFEEid());
         transaction.setCryptoFEEamount(transactionDetails.getCryptoFEEamount());
         return  transactionRepository.save(transaction);
     }

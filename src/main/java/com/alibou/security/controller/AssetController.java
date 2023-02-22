@@ -21,6 +21,11 @@ public class AssetController {
         return assetService.getAllAssets(user.getId());
     }
 
+    @GetMapping("wallet/asset/{id}")
+    public List<Asset> getAllAssets(@PathVariable Long id,@AuthenticationPrincipal User user) {
+        return assetService.getAllAssetsWallet(user.getId(),id);
+    }
+
     @GetMapping("/asset/{id}")
     public Asset getAssetById(@PathVariable Long id,@AuthenticationPrincipal User user) {
         return assetService.getAssetById(id,user.getId());

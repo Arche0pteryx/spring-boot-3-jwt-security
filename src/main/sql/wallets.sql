@@ -1,7 +1,8 @@
 create table wallets (
     id SERIAL,
-    idUser integer,
+    id_user int,
     name varchar,
     exchangeId varchar,
     blockchain varchar,
-    publicKey varchar);
+    publicKey varchar,
+    date timestamp default current_timestamp);

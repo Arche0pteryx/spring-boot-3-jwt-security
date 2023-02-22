@@ -2,7 +2,6 @@ package com.alibou.security.service;
 
 import com.alibou.security.exception.ResourceNotFoundException;
 import com.alibou.security.model.Asset;
-import com.alibou.security.model.Transaction;
 import com.alibou.security.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +15,9 @@ public class AssetService {
         return assetRepository.findByIdUser(idUser);
     }
 
+    public List<Asset> getAllAssetsWallet(Long idUser,Long idWallet) {
+        return assetRepository.findByIdUserAndIdWallet(idUser,idWallet);
+    }
     public Asset getAssetById(Long id,Long idUser) {
         Asset asset= assetRepository.findById(id).orElse(  null);
         if (asset.getIdUser() == idUser) {
@@ -35,8 +37,12 @@ public class AssetService {
 
         asset.setDate(assetDetails.getDate());
         asset.setCrypto(assetDetails.getCrypto());
+        asset.setCryptoId(assetDetails.getCryptoId());
         asset.setCryptoAmount(assetDetails.getCryptoAmount());
         asset.setIdUser(assetDetails.getIdUser());
+        asset.setCryptoId(assetDetails.getCryptoId());
+        asset.setAvgBuyPrice(assetDetails.getAvgBuyPrice());
+
         return  assetRepository.save(asset);
     }
 

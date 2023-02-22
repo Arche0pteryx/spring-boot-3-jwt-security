@@ -30,6 +30,10 @@ public class TransactionController {
     public List<Transaction> getAllTransactions(@AuthenticationPrincipal User user) {
         return transactionService.getAllTransactions(user.getId());
     }
+    @GetMapping("/wallet/transaction/{id}")
+    public List<Transaction> getAllTransactions(@PathVariable Long id,@AuthenticationPrincipal User user) {
+        return transactionService.getAllTransactionsWallet(user.getId(),id);
+    }
 
     @GetMapping("/transaction/{id}")
     public Transaction getTransactionById(@PathVariable Long id,@AuthenticationPrincipal User user) {

@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface AssetRepository extends JpaRepository<Asset, Long> {
     List<Asset> findByIdUser(Long idUser);
+
+    List<Asset> findByIdUserAndIdWallet(Long idUser,Long idWallet);
+
     }

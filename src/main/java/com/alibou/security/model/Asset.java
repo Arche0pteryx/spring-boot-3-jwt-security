@@ -10,25 +10,34 @@ public class Asset {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "id_user")
+    @Column(name = "iduser")
     private long idUser;
 
+    @Column(name = "idwallet")
+    private long idWallet;
     @Column(name = "crypto")
     private String crypto;
 
+    @Column(name = "cryptoid")
+    private String cryptoId;
     @Column(name = "cryptoamount")
     private Double cryptoAmount;
+
+    @Column(name = "avgbuyprice")
+    private Double avgBuyPrice;
     @Column(name = "date")
     private Date date;
 
     // Constructor
     public Asset() {
     }
-    public Asset(long idUser, String crypto, Double cryptoAmount, Date date) {
+    public Asset(long idUser, String crypto, String cryptoId, Double cryptoAmount,Double avgBuyPrice, Date date) {
         super();
         this.idUser = idUser;
         this.crypto = crypto;
+        this.cryptoId = cryptoId;
         this.cryptoAmount = cryptoAmount;
+        this.avgBuyPrice= avgBuyPrice;
         this.date = date;
     }
     //  Getters and Setters
@@ -61,6 +70,26 @@ public class Asset {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public long getIdWallet() {
+        return idWallet;
+    }
+    public void setIdWallet(long idWallet) {
+        this.idWallet = idWallet;
+    }
+    public Double getAvgBuyPrice() {
+        return avgBuyPrice;
+    }
+    public void setAvgBuyPrice(Double avgBuyPrice) {
+        this.avgBuyPrice = avgBuyPrice;
+    }
+
+    public String getCryptoId() {
+        return cryptoId;
+    }
+    public void setCryptoId(String cryptoId) {
+        this.cryptoId = cryptoId;
     }
 
 
