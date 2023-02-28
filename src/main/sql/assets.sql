@@ -4,6 +4,7 @@ create table assets (
   idWallet int,
   crypto varchar,
   cryptoid varchar,
-  cryptoamount double precision,
-  avgBuyPrice double precision,
+  cryptoamount numeric,
+  avgBuyPrice numeric,
   date timestamp default current_timestamp);
+
