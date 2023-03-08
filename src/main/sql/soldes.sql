@@ -6,5 +6,12 @@ create table soldes (
   idAsset int,
   crypto varchar,
   cryptoid varchar,
+  soldeAchat numeric,
+  valeurAchat numeric,
+  soldeVente numeric,
+  valeurVente numeric,
+  avgBuyPrice numeric,
+  avgSellPrice numeric,
   solde numeric,
-  date timestamp default current_timestamp);
+  dateff timestamp default current_timestamp,
+  datfin timestamp );

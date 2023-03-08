@@ -1,7 +1,6 @@
 package com.alibou.security.repository;
 
 import com.alibou.security.model.Asset;
-import com.alibou.security.model.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

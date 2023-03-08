@@ -1,0 +1,3 @@
+CREATE TRIGGER trig_soldes
+ AFTER INSERT ON soldes
+ FOR EACH ROW EXECUTE PROCEDURE trig_soldes();
