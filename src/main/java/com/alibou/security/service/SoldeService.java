@@ -2,15 +2,14 @@ package com.alibou.security.service;
 
 
 import com.alibou.security.model.Solde;
-import com.alibou.security.model.SoldeSUM;
 import com.alibou.security.repository.SoldeRepository;
-import jakarta.persistence.Column;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Stream;
+
 
 @Service
 public class SoldeService {
@@ -27,7 +26,7 @@ public class SoldeService {
         return  objectToSoldeTransformer(soldeRepository.findLastSoldeByIdUser( idUser));
     }
     public List<Solde> findLastSoldeByIdUserAndIdWallet(Long idUser,Long idWallet) {
-        return soldeRepository.findByIdUserAndIdWallet(idUser,idWallet);
+        return  soldeRepository.findLastSoldeByIdUserAndIdWallet(idUser,idWallet);
     }
 
 

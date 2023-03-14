@@ -21,7 +21,7 @@ public class SoldeController {
         return soldeService.findLastSoldeByIdUser(user.getId());
     }
 
-    @GetMapping("wallet/solde/{id}")
+    @GetMapping("/solde/{id}")
     public List<Solde> findLastSoldeByIdUserAndIdWallet(@PathVariable Long id,@AuthenticationPrincipal User user) {
         return soldeService.findLastSoldeByIdUserAndIdWallet(user.getId(),id);
     }
